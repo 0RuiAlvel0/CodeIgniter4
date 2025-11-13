@@ -14,7 +14,12 @@ Options -Indexes
 	# If you installed CodeIgniter in a subfolder, you will need to
 	# change the following line to match the subfolder you need.
 	# http://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewritebase
-	# RewriteBase /
+	RewriteBase /codeigniter4
+
+	AuthType Basic
+	AuthName "Restricted Area - codeigniter4"
+	AuthUserFile /var/www/html/.htpasswd
+	Require valid-user
 
 	# Redirect Trailing Slashes...
 	RewriteCond %{REQUEST_FILENAME} !-d
@@ -47,3 +52,8 @@ Options -Indexes
 # Disable server signature start
 ServerSignature Off
 # Disable server signature end
+
+<FilesMatch "^(\.env|\.htaccess|\.htpasswd|\.git|\.svn|\.DS_Store|Dockerfile|docker-compose\.yml|composer\.json|composer\.lock|package\.json|package-lock\.json|yarn\.lock|README(\.md)?|LICENSE|\.editorconfig|\.babelrc|\.eslintrc(\.js|\.json)?|\.stylelintrc|\.npmrc|\.gitignore|\.gitattributes|\.idea|\.vscode|config\.php|config\.yml|config\.json)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
